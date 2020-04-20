@@ -1,34 +1,28 @@
-# Failed
+# Try again
 
 from sys import stdin
 
 
 N, C = tuple(map(int, stdin.readline().split()))
 M = int(stdin.readline())
-D = [[] for _ in range(N + 1)]
-for _ in range(M):
-	start, end, number = tuple(map(int, stdin.readline().split()))
-	D[start].append((end, number))
+I = [tuple(map(int, stdin.readline().split())) for _ in range(M)]
 
-current_amount = 0
-current = [0 for _ in range(N + 1)]
+# 도착지 기준으로 오름차순 정렬
+I.sort(key=lambda x: x[1])
+
+# load[i] : 마을 i에서 싣고 있는 택배의 양
+load = [0 for _ in range(N + 1)]
+
 result = 0
+for interval in I:
+	max_load = 0
+	for i in range(interval[0], interval[1]):
+		max_load = max(max_load, load[i])
 
-for n in range(1, N + 1):
-	# 내림
-	if current[n] > 0:
-		amount = current[n]
-		current[n] = 0
-		current_amount -= amount
+	amount = min(C - max_load, interval[2])
+	if amount > 0:
+		for i in range(interval[0], interval[1]):
+			load[i] += amount
 		result += amount
-
-	# 실음
-	D[n].sort(key=lambda x: x[0])
-	for d in D[n]:
-		if current_amount == C:
-			break
-		amount = min(C - current_amount, d[1])
-		current[d[0]] += amount
-		current_amount += amount
 
 print(result)
