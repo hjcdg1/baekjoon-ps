@@ -4,8 +4,6 @@ from sys import stdin
 N = int(stdin.readline())
 S = [None] + list(map(int, stdin.readline().split()))
 
-print(S)
-
 if N == 1:
 	print(S[1])
 else:
