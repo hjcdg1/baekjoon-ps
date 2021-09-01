@@ -10,6 +10,6 @@ D[1] = 1
 D[2] = 2
 
 for i in range(3, N + 1):
-	D[i] = D[i - 1] + 2 * D[i - 2] - D[i - 2]
+	D[i] = (D[i - 1] + 2 * D[i - 2] - D[i - 2]) % 10007
 
-print(D[N] % 10007)
+print(D[N])
