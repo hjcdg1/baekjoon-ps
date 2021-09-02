@@ -4,7 +4,7 @@ from sys import stdin
 N = int(stdin.readline())
 P = [None] + [list(map(int, stdin.readline().split())) for _ in range(N)]
 
-# D[i] : i번째 층까지 가는 경로에 있는 숫자의 최대 합
+# D[i][j] : i번째 행의 j번째 열에 해당하는 지점까지 가는 경로에 있는 숫자의 최대 합
 D = [None] + [[-1] * N for _ in range(N)]
 
 D[1][0] = P[1][0]
