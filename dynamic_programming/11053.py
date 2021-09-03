@@ -2,25 +2,21 @@ from sys import stdin
 
 
 N = int(stdin.readline())
-A = [-1] + list(map(int, stdin.readline().split()))
+A = [None] + list(map(int, stdin.readline().split()))
 
 # D[i] : A[i]가 마지막 수인 LIS 길이
-D = [-1] * (N + 1)
+D = [None] + [0 for _ in range(N)]
 
 D[1] = 1
 
 for i in range(2, N + 1):
-	max_D = 1
+	max_D = 0
 	for j in range(1, i):
-		if A[j] < A[i] and D[j] + 1 > max_D:
-			max_D = D[j] + 1
-	D[i] = max_D
+		if A[j] < A[i] and D[j] > max_D:
+			max_D = D[j]
+	D[i] = max_D + 1
 
-max_D = -1
-for i in range(1, N + 1):
-	if D[i] > max_D:
-		max_D = D[i]
-print(max_D)
+print(max(D[1:]))
 
 """
 <Another Solution>
@@ -32,6 +28,7 @@ for i in range(2, N + 1):
 	if A[i] > vector[-1]:
 		vector.append(A[i])
 	else:
+		# vector[i] : 현재까지 만들 수 있는, i번째 요소가 가장 작은 길이가 (i + 1)인 증가 수열의 i번째 요소
 		vector[bisect.bisect_left(vector, A[i])] = A[i]
 
 print(len(vector))
