@@ -1,18 +1,15 @@
-# Try again
-
 from sys import stdin
 
 
 N = int(stdin.readline())
 
-# D[i] : 길이가 i인 것에 대한 답 (슬라이딩 윈도우 : 메모리 절약)
-D = [0, 1, 2]
+# D[i] : 길이가 i인 모든 2진 수열의 개수
+D = [None] + [0 for _ in range(N + 1)]
 
-if N == 1:
-	print(1)
-else:
-	for _ in range(3, N + 1):
-		D1, D2 = D[1], D[2]
-		D[1], D[2] = D2, (D1 + D2) % 15746
+D[1] = 1
+D[2] = 2
 
-	print(D[2] % 15746)
+for i in range(3, N + 1):
+	D[i] = (D[i - 1] + D[i - 2]) % 15746
+
+print(D[N])

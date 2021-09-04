@@ -1,5 +1,3 @@
-# Try again
-
 from sys import stdin
 
 
@@ -13,13 +11,8 @@ D[1] = 0
 D[2] = 3
 
 for i in range(3, N + 1):
-	if i % 2 == 1:
-		D[i] = 0
-	else:
-		total = 3 * D[i - 2] + 2
-		for j in range(4, i):
-			if j % 2 == 0:
-				total += 2 * D[i - j]
-		D[i] = total
+	D[i] = 3 * D[i - 2]
+	for j in range(4, i + 1, 2):
+		D[i] += 2 * D[i - j]
 
 print(D[N])
