@@ -5,7 +5,7 @@ N = int(stdin.readline())
 A = [None] + list(map(int, stdin.readline().split()))
 
 # D[i] : A[i]가 마지막인 증가 부분 수열의 합 최대값
-D = [0 for _ in range(N + 1)]
+D = [None] + [0 for _ in range(N)]
 
 D[1] = A[1]
 
