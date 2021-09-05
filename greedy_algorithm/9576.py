@@ -2,7 +2,6 @@ import sys
 
 
 T = int(sys.stdin.readline())
-
 for _ in range(T):
 	N, M = tuple(map(int, sys.stdin.readline().split()))
 	AB = [tuple(map(int, sys.stdin.readline().split())) for _ in range(M)]
