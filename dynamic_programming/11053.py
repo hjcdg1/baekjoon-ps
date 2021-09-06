@@ -2,10 +2,10 @@ from sys import stdin
 
 
 N = int(stdin.readline())
-A = [None] + list(map(int, stdin.readline().split()))
+A = [0] + list(map(int, stdin.readline().split()))
 
 # D[i] : A[i]가 마지막인 가장 긴 증가하는 부분 수열의 길이
-D = [None] + [0 for _ in range(N)]
+D = [0 for _ in range(N + 1)]
 
 D[1] = 1
 

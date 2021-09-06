@@ -4,7 +4,7 @@ from sys import stdin
 N, K = list(map(int, stdin.readline().split()))
 
 # C[i][j] : i개에서 순서 상관 없이 j개를 뽑는 경우의 수
-C = [None] + [[0 for _ in range(i + 2)] for i in range(N)]
+C = [[0 for _ in range(i + 2)] for i in range(N + 1)]
 
 C[1][0] = 1
 C[1][1] = 1

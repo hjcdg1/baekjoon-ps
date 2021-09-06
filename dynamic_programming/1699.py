@@ -8,7 +8,7 @@ N = int(stdin.readline())
 N_square_list = [n for n in range(1, N + 1) if is_square(n)]
 
 # D[i] : 자연수 i에 대한 답
-D = [None] + [0 for _ in range(N)]
+D = [0 for _ in range(N + 1)]
 
 D[1] = 1
 

@@ -7,7 +7,7 @@ N = [int(stdin.readline()) for _ in range(T)]
 max_N = max(N)
 
 # D[i] : 정수 i를 1, 2, 3의 합으로 나타내는 경우의 수
-D = [None] + [0 for _ in range(max_N + 2)]
+D = [0 for _ in range(max_N + 3)]
 
 D[1] = 1
 D[2] = 2

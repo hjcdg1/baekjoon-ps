@@ -2,10 +2,10 @@ from sys import stdin
 
 
 N = int(stdin.readline())
-A = [None] + [[None] + list(map(int, stdin.readline().split())) for _ in range(N)]
+A = [0] + [[0] + list(map(int, stdin.readline().split())) for _ in range(N)]
 
 # D[i][j] : (i, j) 지점에서 출발하여 이동하는 경로의 개수
-D = [None] + [[None] + [0 for _ in range(N)] for _ in range(N)]
+D = [[0 for _ in range(N + 1)] for _ in range(N + 1)]
 
 for i in reversed(range(1, N + 1)):
 	for j in reversed(range(1, N + 1)):

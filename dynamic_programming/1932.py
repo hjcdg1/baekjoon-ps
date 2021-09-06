@@ -2,10 +2,10 @@ from sys import stdin
 
 
 N = int(stdin.readline())
-P = [None] + [list(map(int, stdin.readline().split())) for _ in range(N)]
+P = [0] + [list(map(int, stdin.readline().split())) for _ in range(N)]
 
 # D[i][j] : i번째 행의 j번째 열에 해당하는 지점까지 가는 경로에 있는 숫자의 최대 합
-D = [None] + [[0 for _ in range(N)] for _ in range(N)]
+D = [[0 for _ in range(N)] for _ in range(N + 1)]
 
 D[1][0] = P[1][0]
 

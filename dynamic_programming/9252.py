@@ -1,8 +1,8 @@
 from sys import stdin
 
 
-A = [None] + list(stdin.readline().rstrip())
-B = [None] + list(stdin.readline().rstrip())
+A = [0] + list(stdin.readline().rstrip())
+B = [0] + list(stdin.readline().rstrip())
 
 A_len = len(A) - 1
 B_len = len(B) - 1

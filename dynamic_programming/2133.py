@@ -7,7 +7,6 @@ N = int(stdin.readline())
 D = [0 for _ in range(N + 2)]
 
 D[0] = 1
-D[1] = 0
 D[2] = 3
 
 for i in range(3, N + 1):

@@ -11,8 +11,6 @@ max_N = max(N)
 D = [[0, 0] for _ in range(max_N + 2)]
 
 D[0][0] = 1
-D[0][1] = 0
-D[1][0] = 0
 D[1][1] = 1
 
 for i in range(2, max_N + 1):

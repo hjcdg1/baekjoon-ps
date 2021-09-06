@@ -4,16 +4,15 @@ from sys import stdin
 T = int(stdin.readline())
 for _ in range(T):
 	K = int(stdin.readline())
-	C = [None] + list(map(int, stdin.readline().split()))
+	C = [0] + list(map(int, stdin.readline().split()))
 
 	# D[i][j] : S[i] ~ S[j]를 합치는 최소 비용
-	D = [None] + [[None] + [0 for _ in range(K)] for _ in range(K)]
+	D = [[0 for _ in range(K + 1)] for _ in range(K + 1)]
 
 	# S[i][j] : S[i] ~ S[j] 크기 합
-	S = [None] + [[None] + [0 for _ in range(K)] for _ in range(K)]
+	S = [[0 for _ in range(K + 1)] for _ in range(K + 1)]
 
 	for i in range(1, K + 1):
-		D[i][i] = 0
 		S[i][i] = C[i]
 
 	for d in range(1, K):

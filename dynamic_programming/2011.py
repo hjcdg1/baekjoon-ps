@@ -1,7 +1,7 @@
 from sys import stdin
 
 
-C = [None] + list(stdin.readline().rstrip())
+C = [0] + list(stdin.readline().rstrip())
 C_len = len(C) - 1
 
 # D[i] : C[-i] ~ C[-1] 암호의 해석 가짓수

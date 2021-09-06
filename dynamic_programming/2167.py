@@ -2,7 +2,7 @@ from sys import stdin
 
 
 N, M = list(map(int, stdin.readline().split()))
-A = [None] + [[None] + list(map(int, stdin.readline().split())) for _ in range(N)]
+A = [0] + [[0] + list(map(int, stdin.readline().split())) for _ in range(N)]
 
 # D[i][j] : A[1][1] ~ A[i][j] 합
 D = [[0 for _ in range(M + 1)] for _ in range(N + 1)]

@@ -2,10 +2,10 @@ from sys import stdin
 
 
 N = int(stdin.readline())
-P = [None] + list(map(int, stdin.readline().split()))
+P = [0] + list(map(int, stdin.readline().split()))
 
 # D[i] : 카드 i개를 갖기 위해 지불해야 하는 금액의 최댓값
-D = [None] + [0 for _ in range(N)]
+D = [0 for _ in range(N + 1)]
 
 D[1] = P[1]
 

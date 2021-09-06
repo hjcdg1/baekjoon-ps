@@ -6,7 +6,7 @@ N = [int(stdin.readline()) for _ in range(T)]
 max_N = max(N)
 
 # D[i] : P(i)
-D = [None] + [0 for _ in range(max_N + 4)]
+D = [0 for _ in range(max_N + 5)]
 
 D[1] = 1
 D[2] = 1

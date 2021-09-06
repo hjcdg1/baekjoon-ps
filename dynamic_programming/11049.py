@@ -2,10 +2,10 @@ from sys import stdin
 
 
 N = int(stdin.readline())
-M = [None] + [list(map(int, stdin.readline().split())) for _ in range(N)]
+M = [0] + [list(map(int, stdin.readline().split())) for _ in range(N)]
 
 # D[i][j] : M[i] ~ M[j]를 곱하는 최소 횟수
-D = [None] + [[None] + [0 for _ in range(N)] for _ in range(N)]
+D = [[0 for _ in range(N + 1)] for _ in range(N + 1)]
 
 for d in range(1, N):
 	for i in range(1, N - d + 1):

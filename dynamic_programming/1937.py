@@ -4,13 +4,13 @@ from sys import stdin, setrecursionlimit
 setrecursionlimit(10000)
 
 N = int(stdin.readline())
-A = [None] + [[None] + list(map(int, stdin.readline().split())) for _ in range(N)]
+A = [0] + [[0] + list(map(int, stdin.readline().split())) for _ in range(N)]
 
 # D[i][j] : (i, j) 지점에서 출발할 때 거칠 수 있는 지점의 최대 개수
-D = [None] + [[None] + [0 for _ in range(N)] for _ in range(N)]
+D = [[0 for _ in range(N + 1)] for _ in range(N + 1)]
 
 # V[i][j] : D[i][j] 값의 계산 완료 여부
-V = [None] + [[None] + [False for _ in range(N)] for _ in range(N)]
+V = [[False for _ in range(N + 1)] for _ in range(N + 1)]
 
 def get_D(i, j):
 	# 값이 결정되어 있다면 굳이 다시 계산하지 않음

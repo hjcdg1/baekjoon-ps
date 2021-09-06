@@ -4,7 +4,7 @@ from sys import stdin
 N = int(stdin.readline())
 
 # D[i] : 2 x i 크기의 직사각형을 채우는 방법의 수
-D = [None] + [0 for _ in range(N + 1)]
+D = [0 for _ in range(N + 2)]
 
 D[1] = 1
 D[2] = 3

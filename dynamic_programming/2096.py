@@ -2,7 +2,7 @@ from sys import stdin
 
 
 N = int(stdin.readline())
-P = [None] + [list(map(int, stdin.readline().split())) for _ in range(N)]
+P = [0] + [list(map(int, stdin.readline().split())) for _ in range(N)]
 
 # MAX[i][j] : i번째 행까지만 볼 때, i번째 행에 숫자가 j번째 칸에 위치하는 경우의 최대 점수
 # MAX[j]로 최적화 (슬라이딩 윈도우 : 메모리 절약)

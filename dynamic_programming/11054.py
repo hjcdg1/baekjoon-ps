@@ -2,11 +2,11 @@ from sys import stdin
 
 
 N = int(stdin.readline())
-A = [None] + list(map(int, stdin.readline().split()))
+A = [0] + list(map(int, stdin.readline().split()))
 
 # D[i][0] : A[i]로 끝나는 가장 긴 바이토닉 수열의 길이 (감소 형태)
 # D[i][1] : A[i]로 끝나는 가장 긴 바이토닉 수열의 길이 (증가 형태)
-D = [None] + [[0, 0] for _ in range(N)]
+D = [[0, 0] for _ in range(N + 1)]
 
 D[1][0] = 1
 D[1][1] = 1

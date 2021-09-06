@@ -4,9 +4,7 @@ from sys import stdin
 N = int(stdin.readline())
 
 # D[i] : i를 1로 만드는 연산의 최소 횟수
-D = [None] + [0 for _ in range(N)]
-
-D[1] = 0
+D = [0 for _ in range(N + 1)]
 
 for i in range(2, N + 1):
 	candidates = []

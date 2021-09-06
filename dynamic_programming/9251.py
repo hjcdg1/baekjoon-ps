@@ -1,8 +1,8 @@
 from sys import stdin
 
 
-X = [None] + list(stdin.readline().rstrip())
-Y = [None] + list(stdin.readline().rstrip())
+X = [0] + list(stdin.readline().rstrip())
+Y = [0] + list(stdin.readline().rstrip())
 N, M = len(X) - 1, len(Y) - 1
 
 # D[i][j] : X[i], Y[j]까지만 고려했을 때 최장 공통 부분 수열의 길이

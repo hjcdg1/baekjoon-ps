@@ -2,12 +2,12 @@ from sys import stdin
 
 
 N = int(stdin.readline())
-A = [None] + list(map(int, stdin.readline().split()))
+A = [0] + list(map(int, stdin.readline().split()))
 M = int(stdin.readline())
 Q = [list(map(int, stdin.readline().split())) for _ in range(M)]
 
 # D[i][j] : A[i] ~ A[j]가 팰린드롬인지 여부
-D = [None] + [[None] + [0 for _ in range(N)] for _ in range(N)]
+D = [[0 for _ in range(N + 1)] for _ in range(N + 1)]
 
 for i in range(1, N + 1):
 	D[i][i] = 1

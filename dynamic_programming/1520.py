@@ -4,13 +4,13 @@ from sys import stdin, setrecursionlimit
 setrecursionlimit(10000)
 
 M, N = list(map(int, stdin.readline().split()))
-A = [None] + [[None] + list(map(int, stdin.readline().split())) for _ in range(M)]
+A = [0] + [[0] + list(map(int, stdin.readline().split())) for _ in range(M)]
 
 # D[i][j] : (i, j) 지점까지 내리막길로만 이동하는 경로의 개수
-D = [None] + [[None] + [0 for _ in range(N)] for _ in range(M)]
+D = [[0 for _ in range(N + 1)] for _ in range(M + 1)]
 
 # V[i][j] : D[i][j] 값의 계산 완료 여부
-V = [None] + [[None] + [False for _ in range(N)] for _ in range(M)]
+V = [[False for _ in range(N + 1)] for _ in range(M + 1)]
 
 def get_D(i, j):
 	# 출발점

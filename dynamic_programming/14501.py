@@ -5,7 +5,7 @@ N = int(stdin.readline())
 TP = [None] + [list(map(int, stdin.readline().split())) for _ in range(N)]
 
 # D[i] : i일 상담이 마지막일 때의 최대 이익 (i일 상담 불가 : 0)
-D = [None] + [0 for _ in range(N)]
+D = [0 for _ in range(N + 1)]
 
 D[1] = TP[1][1] if TP[1][0] <= N else 0
 

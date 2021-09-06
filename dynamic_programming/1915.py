@@ -2,10 +2,10 @@ from sys import stdin
 
 
 N, M = list(map(int, stdin.readline().split()))
-A = [None] + [[None] + list(map(int, list(stdin.readline().rstrip()))) for _ in range(N)]
+A = [0] + [[0] + list(map(int, list(stdin.readline().rstrip()))) for _ in range(N)]
 
 # D[i][j] : A[i][j]가 마지막 수인 정사각형 중 가장 큰 정사각형의 한 변 길이 
-D = [None] + [[None] + [0 for _ in range(M)] for _ in range(N)]
+D = [[0 for _ in range(M + 1)] for _ in range(N + 1)]
 
 for i in range(1, N + 1):
 	for j in range(1, M + 1):
