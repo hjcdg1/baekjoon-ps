@@ -1,8 +1,8 @@
 from sys import stdin
 
 
-A = [None] + list(stdin.readline().rstrip())
-B = [None] + list(stdin.readline().rstrip())
+A = [0] + list(stdin.readline().rstrip())
+B = [0] + list(stdin.readline().rstrip())
 
 A_len = len(A) - 1
 B_len = len(B) - 1
@@ -15,9 +15,4 @@ for i in range(1, A_len + 1):
 		if A[i] == B[j]:
 			D[i][j] = D[i - 1][j - 1] + 1
 
-max_D = -1
-for i in range(1, A_len + 1):
-	for j in range(1, B_len + 1):
-		max_D = max(max_D, D[i][j])
-
-print(max_D)
+print(max([max(d[1:]) for d in D[1:]]))

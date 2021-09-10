@@ -2,7 +2,7 @@ from sys import stdin
 
 
 N = int(stdin.readline())
-TP = [None] + [list(map(int, stdin.readline().split())) for _ in range(N)]
+TP = [0] + [list(map(int, stdin.readline().split())) for _ in range(N)]
 
 # D[i] : i일 상담이 마지막일 때의 최대 이익 (i일 상담 불가 : 0)
 D = [0 for _ in range(N + 1)]
