@@ -1,44 +1,35 @@
-from sys import stdin, setrecursionlimit
+from sys import stdin
 
 
-setrecursionlimit(1000000)
+N, M = list(map(int, stdin.readline().split()))
+A = [0] + [[0] + list(map(int, stdin.readline().split())) for _ in range(N)]
 
-N, M = tuple(map(int, stdin.readline().split()))
-A = [[0 for _ in range(M + 1)]] + [[0] + list(map(int, stdin.readline().split())) for _ in range(N)]
-
-# D[i][j][src] : A[i][j]에서 출발할 때 가치 합의 최댓값 (src: 온 방향)
+# D[i][j][0] : (i, j) 지점에서 출발할 때의 최대 가치 합 (아래로 가는 경우)
+# D[i][j][1] : (i, j) 지점에서 출발할 때의 최대 가치 합 (왼쪽으로 가는 경우)
+# D[i][j][2] : (i, j) 지점에서 출발할 때의 최대 가치 합 (오른쪽으로 가는 경우)
 D = [[[0, 0, 0] for _ in range(M + 1)] for _ in range(N + 1)]
-visited = [[[False, False, False] for _ in range(M + 1)] for _ in range(N + 1)]
 
-def get_D(i, j, src):
-	if visited[i][j][src]:
-		return D[i][j][src]
-	else:
-		if i == N and j == M:
-			D[i][j][src] = A[i][j]
+D[N][M][0] = A[N][M]
+D[N][M][1] = A[N][M]
+D[N][M][2] = A[N][M]
+for j in reversed(range(1, M)):
+	D[N][j][0] = float('-inf')
+	D[N][j][1] = float('-inf')
+	D[N][j][2] = A[N][j] + D[N][j + 1][2]
+
+for i in reversed(range(1, N)):
+	for j in range(1, M + 1):
+		D[i][j][0] = A[i][j] + max(D[i + 1][j])
+
+		if j == 1:
+			D[i][j][1] = float('-inf')
 		else:
-			max_D = float('-inf')
+			D[i][j][1] = A[i][j] + max(D[i][j - 1][0], D[i][j - 1][1])
 
-			if src == 0:
-				if i + 1 <= N:
-					max_D = max(max_D, get_D(i + 1, j, 1))
-				if j + 1 <= M:
-					max_D = max(max_D, get_D(i, j + 1, 0))
-			elif src == 1:
-				if j - 1 >= 1:
-					max_D = max(max_D, get_D(i, j - 1, 2))
-				if i + 1 <= N:
-					max_D = max(max_D, get_D(i + 1, j, 1))
-				if j + 1 <= M:
-					max_D = max(max_D, get_D(i, j + 1, 0))
-			else:
-				if j - 1 >= 1:
-					max_D = max(max_D, get_D(i, j - 1, 2))
-				if i + 1 <= N:
-					max_D = max(max_D, get_D(i + 1, j, 1))
-			D[i][j][src] = max_D + A[i][j]
+	for j in reversed(range(1, M + 1)):
+		if j == M:
+			D[i][j][2] = float('-inf')
+		else:
+			D[i][j][2] = A[i][j] + max(D[i][j + 1][0], D[i][j + 1][2])
 
-		visited[i][j][src] = True
-		return D[i][j][src]
-
-print(get_D(1, 1, 0))
+print(max(D[1][1][0], D[1][1][2]))
