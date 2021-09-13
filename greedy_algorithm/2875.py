@@ -1,7 +1,10 @@
-N, M, K = tuple(map(int, input().split()))
+from sys import stdin
+import math
 
-number_of_teams = N // 2 if N < 2 * M else M
-R = abs(N + M - 3 * number_of_teams)
-if K > R:
-	number_of_teams -= ((K - R - 1) // 3) + 1
-print(number_of_teams)
+
+N, M, K = list(map(int, stdin.readline().split()))
+
+team_num = math.floor(min(N, 2 * M) / 2)
+remaining_num = N + M - 3 * team_num
+
+print(team_num - math.ceil(max(K - remaining_num, 0) / 3))

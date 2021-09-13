@@ -1,9 +1,13 @@
-N, K = tuple(map(int, input().split()))
-A = [int(input()) for _ in range(N)]
+from sys import stdin
 
-result = 0
-R = K
+
+N, K = list(map(int, stdin.readline().split()))
+A = [int(stdin.readline()) for _ in range(N)]
+
+answer = 0
+k = K
 for a in reversed(A):
-	result += R // a
-	R = R % a
-print(result)
+	answer += k // a
+	k = k % a
+
+print(answer)

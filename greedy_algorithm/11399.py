@@ -1,7 +1,11 @@
-N = int(input())
-P = list(map(int, input().split()))
+from sys import stdin
 
-result = sum(P)
-for i, p in enumerate(sorted(P)[:-1]):
-	result += p * (N-1-i)
-print(result)
+
+N = int(stdin.readline())
+P = list(map(int, stdin.readline().split()))
+
+answer = sum(P)
+for idx, p in enumerate(sorted(P)[:-1]):
+	answer += p * (N - idx - 1)
+
+print(answer)

@@ -1,4 +1,7 @@
-exp = input()
-exp_trimmed = [sum(map(int, plus_chunk.split('+'))) for plus_chunk in exp.split('-')]
-result = exp_trimmed[0] - sum(exp_trimmed[1:])
-print(result)
+from sys import stdin
+
+
+E = stdin.readline().rstrip()
+
+E_processed = [sum(map(int, chunk.split('+'))) for chunk in E.split('-')]
+print(E_processed[0] - sum(E_processed[1:]))

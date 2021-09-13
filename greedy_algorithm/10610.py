@@ -1,8 +1,10 @@
-N = list(map(int, input()))
+from sys import stdin
 
-if 0 not in N:
-	print(-1)
-elif sum(N) % 3 != 0:
+
+N = list(map(int, stdin.readline().rstrip()))
+
+if 0 not in N or sum(N) % 3 != 0:
 	print(-1)
 else:
-	print(''.join(map(str, sorted(N, reverse=True))))
+	N.sort(reverse=True)
+	print(''.join(map(str, N)))

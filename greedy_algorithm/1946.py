@@ -1,24 +1,18 @@
-# Tray again
-
-import sys
+from sys import stdin 
 
 
-T = int(sys.stdin.readline())
-T_list = [{'N': 0, 'R': None} for _ in range(T)]
-for t in range(T):
-	T_list[t]['N'] = int(sys.stdin.readline())
-	T_list[t]['R'] = [tuple(map(int, sys.stdin.readline().split())) for _ in range(T_list[t]['N'])]
+T = int(stdin.readline())
+for _ in range(T):
+	N = int(stdin.readline())
+	R = [list(map(int, stdin.readline().split())) for _ in range(N)]
 
-for T_dict in T_list:
-	N = T_dict['N']
-	R = T_dict['R']
+	R.sort(key=lambda r: r[0])
 
-	R_sorted = sorted(R, key=lambda x: x[0])
+	answer = 1
+	min_r = R[0][1]
+	for r in R[1:]:
+		if r[1] < min_r:
+			answer += 1
+		min_r = min(min_r, r[1])
 
-	cnt = 1
-	interview_rank = R_sorted[0][1]
-	for r in R_sorted[1:]:
-		if r[1] < interview_rank:
-			cnt += 1
-			interview_rank = r[1]
-	print(cnt)
+	print(answer)
