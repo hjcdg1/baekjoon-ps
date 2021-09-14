@@ -1,14 +1,14 @@
-# Try again faster
-
-import sys
+from sys import stdin
 
 
-N = int(sys.stdin.readline())
-A = list(map(int, sys.stdin.readline().rstrip().split()))
+N = int(stdin.readline())
+A = list(map(int, stdin.readline().split()))
 
-index_list = list(range(N))
-result = [-1 for _ in range(N)]
-for i, a in enumerate(A):
-	result[index_list[a]] = i + 1
-	index_list.pop(a)
-print(' '.join(map(str, result)))
+idx_list = list(range(N))
+sequence = [0 for _ in range(N)]
+
+for idx, a in enumerate(A):
+	sequence[idx_list[a]] = idx + 1
+	idx_list.pop(a)
+
+print(' '.join(map(str, sequence)))

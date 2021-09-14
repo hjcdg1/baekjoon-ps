@@ -1,56 +1,52 @@
-import sys
+from sys import stdin
 
 
-K = int(sys.stdin.readline())
-A = sys.stdin.readline().split()
+N = int(stdin.readline())
+A = stdin.readline().split()
+K = len(A)
 
-NUMBER_ASC, NUMBER_DESC = list(range(10)), list(reversed(range(10)))
-result_max, result_min = [], []
-cnt_max, cnt_min = 0, 0
+# 최댓값 찾기
 
-for a in A:
-	if a == '<':
-		cnt_max += 1
+numbers_asc = list(range(10))
+answer_max = ''
 
-		if cnt_min > 0:
-			min_number = NUMBER_DESC.pop()
-			numbers_to_insert = [NUMBER_DESC.pop() for _ in range(cnt_min)]
-			numbers_to_insert.reverse()
-			result_min.extend(numbers_to_insert)
-			result_min.append(min_number)
-			cnt_min = 0
-		else:
-			result_min.append(NUMBER_DESC.pop())
-	elif a == '>':
-		cnt_min += 1
+curr = 0
+while curr < K:
+	if A[curr] == '>':
+		answer_max += str(numbers_asc.pop())
+		curr += 1
+	else:
+		cnt = 0
+		while curr < K and A[curr] == '<':
+			cnt += 1
+			curr += 1
 
-		if cnt_max > 0:
-			max_number = NUMBER_ASC.pop()
-			numbers_to_insert = [NUMBER_ASC.pop() for _ in range(cnt_max)]
-			numbers_to_insert.reverse()
-			result_max.extend(numbers_to_insert)
-			result_max.append(max_number)
-			cnt_max = 0
-		else:
-			result_max.append(NUMBER_ASC.pop())
+		max_backup = numbers_asc.pop()
+		answer_max += ''.join(map(str, reversed([numbers_asc.pop() for _ in range(cnt)])))
+		numbers_asc.append(max_backup)
 
-if cnt_min > 0:
-	min_number = NUMBER_DESC.pop()
-	numbers_to_insert = [NUMBER_DESC.pop() for _ in range(cnt_min)]
-	numbers_to_insert.reverse()
-	result_min.extend(numbers_to_insert)
-	result_min.append(min_number)
-else:
-	result_min.append(NUMBER_DESC.pop())
+answer_max += str(numbers_asc.pop())
+print(answer_max)
 
-if cnt_max > 0:
-	max_number = NUMBER_ASC.pop()
-	numbers_to_insert = [NUMBER_ASC.pop() for _ in range(cnt_max)]
-	numbers_to_insert.reverse()
-	result_max.extend(numbers_to_insert)
-	result_max.append(max_number)
-else:
-	result_max.append(NUMBER_ASC.pop())
+# 최솟값 찾기
 
-print(''.join(map(str, result_max)))
-print(''.join(map(str, result_min)))
+numbers_desc = list(reversed(range(10)))
+answer_min = ''
+
+curr = 0
+while curr < K:
+	if A[curr] == '<':
+		answer_min += str(numbers_desc.pop())
+		curr += 1
+	else:
+		cnt = 0
+		while curr < K and A[curr] == '>':
+			cnt += 1
+			curr += 1
+
+		min_backup = numbers_desc.pop()
+		answer_min += ''.join(map(str, reversed([numbers_desc.pop() for _ in range(cnt)])))
+		numbers_desc.append(min_backup)
+
+answer_min += str(numbers_desc.pop())
+print(answer_min)
