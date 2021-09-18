@@ -1,23 +1,22 @@
-# Tray again
-
-import sys
+from sys import stdin
 
 
-N = int(sys.stdin.readline())
-W = sorted(list(map(int, sys.stdin.readline().split())))
+N = int(stdin.readline())
+W = list(map(int, stdin.readline().split()))
 
-if W[0] != 1:
+W.sort()
+
+if W[0] > 1:
 	print(1)
-else:
-	answer = None
-	total = W[0]
-	for w in W[1:]:
-		if w <= total + 1:
-			total += w
-		else:
-			answer = total + 1
-			break
-	if answer is None:
-		answer = total + 1
 
-	print(answer)
+else:
+	end = 1
+	answer = None
+
+	for w in W[1:]:
+		if w <= end + 1:
+			end += w
+		else:
+			break
+
+	print(end + 1)

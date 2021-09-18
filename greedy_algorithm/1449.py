@@ -1,15 +1,19 @@
-import sys
+from sys import stdin
 
-N, L = tuple(map(int, sys.stdin.readline().split()))
-P = sorted(list(map(int, sys.stdin.readline().split())))
 
-cnt = 0
-start, end = 0, 0
-for p in P:
+N, L = list(map(int, stdin.readline().split()))
+P = list(map(int, stdin.readline().split()))
+
+P.sort()
+
+end = P[0] - 0.5 + L
+answer = 1
+
+for p in P[1:]:
 	if p + 0.5 <= end:
 		continue
 	else:
-		start = p - 0.5
-		end = start + L
-		cnt += 1
-print(cnt)
+		end = p - 0.5 + L
+		answer += 1
+
+print(answer)
