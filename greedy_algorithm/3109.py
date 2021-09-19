@@ -1,36 +1,26 @@
-# Try again
-
-import sys
+from sys import stdin
 
 
-R, C = tuple(map(int, sys.stdin.readline().split()))
-G = [list(sys.stdin.readline().rstrip()) for _ in range(R)]
+R, C = list(map(int, stdin.readline().split()))
+G = [list(stdin.readline().rstrip()) for _ in range(R)]
 
-cnt = 0
-for i in range(R):
-	arrive = False
-	
-	stack = []
-	stack.append((i, 0))
+answer = 0
+for r in range(R):
+	stack = [(r, 0)]
+
 	while stack:
-		# 살펴볼 위치 pop
-		r, c = stack.pop()
-		G[r][c] = 'x'
+		curr_r, curr_c = stack.pop()
+		G[curr_r][curr_c] = 'x'
 
-		# 도착
-		if c == C - 1:
-			arrive = True
+		if curr_c == C - 1:
+			answer += 1
 			break
 
-		# 방문 가능한 자식 스택에 push
-		if r + 1 < R and c + 1 < C and G[r + 1][c + 1] != 'x':
-			stack.append((r + 1, c + 1))
-		if c + 1 < C and G[r][c + 1] != 'x':
-			stack.append((r, c + 1))
-		if r - 1 >= 0 and c + 1 < C and G[r - 1][c + 1] != 'x':
-			stack.append((r - 1, c + 1))
+		if curr_r < R - 1 and G[curr_r + 1][curr_c + 1] != 'x':
+			stack.append((curr_r + 1, curr_c + 1))
+		if G[curr_r][curr_c + 1] != 'x':
+			stack.append((curr_r, curr_c + 1))
+		if curr_r > 0 and G[curr_r - 1][curr_c + 1] != 'x':
+			stack.append((curr_r - 1, curr_c + 1))
 
-	if arrive:
-		cnt += 1
-
-print(cnt)
+print(answer)

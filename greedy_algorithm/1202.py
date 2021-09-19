@@ -1,22 +1,23 @@
-# Try again
+from sys import stdin
+import heapq
 
-import sys, heapq
 
+N, K = list(map(int, stdin.readline().split()))
+MV = [list(map(int, stdin.readline().split())) for _ in range(N)]
+C = [int(stdin.readline()) for _ in range(K)]
 
-N, K = tuple(map(int, sys.stdin.readline().split()))
-MV = [tuple(map(int, sys.stdin.readline().split())) for _ in range(N)]
-C = [int(sys.stdin.readline()) for _ in range(K)]
-
-MV.sort(key=lambda x: x[0])
-C.sort()
+MV.sort(key=lambda x: x[0])  # 무게 기준 정렬
+C.sort()  # 최대 무게 기준 정렬
 
 heap = []
 idx = 0
-result = 0
+answer = 0
+
 for c in C:
 	while idx < len(MV) and MV[idx][0] <= c:
-		heapq.heappush(heap, (-MV[idx][1], MV[idx][0]))
+		heapq.heappush(heap, -MV[idx][1])
 		idx += 1
 	if heap:
-		result += -heapq.heappop(heap)[0]
-print(result)
+		answer += -heapq.heappop(heap)
+
+print(answer)

@@ -1,18 +1,20 @@
-import sys
+from sys import stdin
 
 
-DOC = sys.stdin.readline().rstrip()
-W = sys.stdin.readline().rstrip()
+DOC = stdin.readline().rstrip()
+W = stdin.readline().rstrip()
 
 DOC_len = len(DOC)
 W_len = len(W)
 
-cnt = 0
-i = 0
-while i < DOC_len:
-	if DOC[i:i + W_len] == W:
-		cnt += 1
-		i += W_len
+idx = 0
+answer = 0
+
+while idx < DOC_len:
+	if DOC[idx:idx + W_len] == W:
+		answer += 1
+		idx += W_len
 	else:
-		i += 1
-print(cnt)
+		idx += 1
+
+print(answer)
