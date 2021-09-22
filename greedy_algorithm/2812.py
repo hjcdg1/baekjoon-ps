@@ -1,9 +1,7 @@
-# Try again
-
 from sys import stdin
 
 
-N, K = tuple(map(int, stdin.readline().split()))
+N, K = list(map(int, stdin.readline().split()))
 number = list(map(int, list(stdin.readline().rstrip())))
 
 k = 0

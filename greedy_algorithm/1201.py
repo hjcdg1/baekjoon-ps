@@ -1,46 +1,33 @@
 from sys import stdin
-from collections import deque
 
 
-N, M, K = tuple(map(int, stdin.readline().split()))
+N, M, K = list(map(int, stdin.readline().split()))
 
-if not (M + K -1 <= N <= M * K):
+if not (M + K - 1 <= N <= M * K):
 	print(-1)
 
 else:
-	numbers = list(range(1, N + 1))
+	groups = [[] for _ in range(M)]
 
-	# 덩어리 1개 (N == K)
-	if M == 1:
-		result = list(reversed(numbers))
+	# 크기가 K인 첫 번째 그룹 구성
+	groups[0].extend(list(range(1, K + 1)))
 
-	# 덩어리 2개 이상
-	elif M > 1:
-		if K == 1:
-			result = numbers
-		elif K > 1:
-			result = list(reversed(numbers[:K]))
+	# 나머지 (M - 1)개의 그룹 구성
+	curr_group_idx = 1
+	for n in range(K + 1, N + 1):
+		groups[curr_group_idx].append(n)
 
-			size_per_group = round((N - K) / (M - 1))
-			start = K
-			group_ends = []
-			while True:
-				group_ends.append(start + size_per_group)
-				start += size_per_group
-				if len(group_ends) == M - 1:
-					break
+		if curr_group_idx == M - 1:
+			curr_group_idx = 1
+		else:
+			curr_group_idx += 1
 
-			if start < N:
-				r = N - start
-				for i in range(1, len(group_ends) + 1):
-					group_ends[-i] += r
-					r -= 1
-					if r == 0:
-						break
+	# 그룹 내 최댓값을 기준으로 그룹 순서 정렬
+	groups.sort(key=lambda group: max(group))
 
-			start = K
-			for group_end in group_ends:
-				result += list(reversed(numbers[start:group_end]))
-				start = group_end
+	# 각 그룹 내 요소들의 순서를 내림차순으로 정렬
+	for group in groups:
+		group.sort(reverse=True)
 
-	print(' '.join(list(map(str, result))))
+	answer = ' '.join([' '.join(map(str, group)) for group in groups])
+	print(answer)
